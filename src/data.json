@@ -1,22 +1,22 @@
 {"products":[
     {
-        "_id":"TestProduct1",
+        "_id":"1",
         "title":"Test Product",
         "image":"/images/imageAsset.jpeg",
         "description":"a producto to be displayed",
-        "price":10,
+        "price":1,
         "category":["cat1", "cat2", "cat3"]
     },
     {
-        "_id":"TestProduct2",
+        "_id":"2",
         "title":"Test Product",
         "image":"/images/imageAsset.jpeg",
         "description":"a producto to be displayed",
-        "price":10,
+        "price":12,
         "category":["cat1", "cat2", "cat3"]
     },
     {
-        "_id":"TestProduct3",
+        "_id":"3",
         "title":"Test Product",
         "image":"/images/imageAsset.jpeg",
         "description":"a producto to be displayed",
@@ -24,7 +24,15 @@
         "category":["cat1", "cat2", "cat3"]
     },
     {
-        "_id":"TestProduct4",
+        "_id":"4",
+        "title":"Test Product",
+        "image":"/images/imageAsset.jpeg",
+        "description":"a producto to be displayed",
+        "price":9,
+        "category":["cat1", "cat2", "cat3"]
+    },
+    {
+        "_id":"5",
         "title":"Test Product",
         "image":"/images/imageAsset.jpeg",
         "description":"a producto to be displayed",
@@ -32,15 +40,7 @@
         "category":["cat1", "cat2", "cat3"]
     },
     {
-        "_id":"TestProduct5",
-        "title":"Test Product",
-        "image":"/images/imageAsset.jpeg",
-        "description":"a producto to be displayed",
-        "price":10,
-        "category":["cat1", "cat2", "cat3"]
-    },
-    {
-        "_id":"TestProduct6",
+        "_id":"6",
         "title":"Test Product",
         "image":"/images/imageAsset.jpeg",
         "description":"a producto to be displayed",
