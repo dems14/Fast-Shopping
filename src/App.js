@@ -1,6 +1,7 @@
 import React from 'react';
 import data from './data.json'
 import Products from './components/Products';
+import Filter from './components/Filter';
 
 
 class App extends React.Component {
@@ -9,8 +10,32 @@ class App extends React.Component {
     this.state = {
       products : data.products,
       sort: ""
-    }
+    };
   }
+
+  sortProducts = (event) => {
+
+    console.log(event.target.value);
+    const sort = event.target.value;
+    this.setState((state) => ({
+      sort: sort,
+      products: this.state.products.slice()
+      .sort((a,b) => 
+          sort === "Lowest Price"
+          ? a.price > b.price
+          ? 1
+          : -1
+          : sort === "Alpha Order" 
+          ? a.price < b.price
+          ? 1
+          :-1
+          : a._id > b._id
+          ? 1
+          :-1
+       ),
+    }))
+  }
+
   render(){
     return (
       <div className="grid-container">
@@ -20,6 +45,11 @@ class App extends React.Component {
         <main>
           <div className="content">
             <div className="main">
+                <Filter count={this.state.products.length} 
+                sort={this.state.sort}
+                sortProducts={this.sortProducts}
+                >
+                </Filter>
                 <Products products={this.state.products}></Products>
             </div>
             <div className="sidebar">
