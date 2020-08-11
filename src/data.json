@@ -1,0 +1,50 @@
+{"products":[
+    {
+        "_id":"TestProduct1",
+        "title":"Test Product",
+        "image":"/images/imageAsset.jpeg",
+        "description":"a producto to be displayed",
+        "price":10,
+        "category":["cat1", "cat2", "cat3"]
+    },
+    {
+        "_id":"TestProduct2",
+        "title":"Test Product",
+        "image":"/images/imageAsset.jpeg",
+        "description":"a producto to be displayed",
+        "price":10,
+        "category":["cat1", "cat2", "cat3"]
+    },
+    {
+        "_id":"TestProduct3",
+        "title":"Test Product",
+        "image":"/images/imageAsset.jpeg",
+        "description":"a producto to be displayed",
+        "price":100,
+        "category":["cat1", "cat2", "cat3"]
+    },
+    {
+        "_id":"TestProduct4",
+        "title":"Test Product",
+        "image":"/images/imageAsset.jpeg",
+        "description":"a producto to be displayed",
+        "price":10,
+        "category":["cat1", "cat2", "cat3"]
+    },
+    {
+        "_id":"TestProduct5",
+        "title":"Test Product",
+        "image":"/images/imageAsset.jpeg",
+        "description":"a producto to be displayed",
+        "price":10,
+        "category":["cat1", "cat2", "cat3"]
+    },
+    {
+        "_id":"TestProduct6",
+        "title":"Test Product",
+        "image":"/images/imageAsset.jpeg",
+        "description":"a producto to be displayed",
+        "price":10,
+        "category":["cat1", "cat2", "cat3"]
+    }
+]}
