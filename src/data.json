@@ -5,7 +5,7 @@
         "image":"/images/imageAsset.jpeg",
         "description":"a producto to be displayed",
         "price":1,
-        "category":["cat1", "cat2", "cat3"]
+        "categories":["cat1", "cat2", "cat3"]
     },
     {
         "_id":"2",
@@ -13,7 +13,7 @@
         "image":"/images/imageAsset.jpeg",
         "description":"a producto to be displayed",
         "price":12,
-        "category":["cat1", "cat2", "cat3"]
+        "categories":["cat1", "cat2", "cat3"]
     },
     {
         "_id":"3",
@@ -21,7 +21,7 @@
         "image":"/images/imageAsset.jpeg",
         "description":"a producto to be displayed",
         "price":100,
-        "category":["cat1", "cat2", "cat3"]
+        "categories":["cat1", "cat2", "cat3"]
     },
     {
         "_id":"4",
@@ -29,7 +29,7 @@
         "image":"/images/imageAsset.jpeg",
         "description":"a producto to be displayed",
         "price":9,
-        "category":["cat1", "cat2", "cat3"]
+        "categories":["cat1", "cat2", "cat3"]
     },
     {
         "_id":"5",
@@ -37,7 +37,7 @@
         "image":"/images/imageAsset.jpeg",
         "description":"a producto to be displayed",
         "price":10,
-        "category":["cat1", "cat2", "cat3"]
+        "categories":["cat1", "cat2", "cat3"]
     },
     {
         "_id":"6",
@@ -45,6 +45,6 @@
         "image":"/images/imageAsset.jpeg",
         "description":"a producto to be displayed",
         "price":10,
-        "category":["cat1", "cat2", "cat3"]
+        "categories":["cat1", "cat2", "cat3"]
     }
 ]}
