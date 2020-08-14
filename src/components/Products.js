@@ -8,6 +8,7 @@ import {fetchProducts} from '../actions/productsActions';
 
 Modal.setAppElement('#root')
 
+
  class Products extends Component {
     constructor(props){
         super(props);
@@ -18,6 +19,7 @@ Modal.setAppElement('#root')
 
     componentDidMount(){
         this.props.fetchProducts();
+
     };
     openModal = (product) =>{
         this.setState({product});
@@ -28,6 +30,10 @@ Modal.setAppElement('#root')
     }
     render() {
         const {product} = this.state;
+        /*this.props.products.forEach(product => {
+            product.categories = JSON.parse(product.categories);
+        })*/
+        
         return (
             <div>
                 <Fade bottom cascade>
