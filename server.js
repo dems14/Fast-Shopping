@@ -42,9 +42,9 @@ app.get('/api/products', (req, res) => {
 //insert a product
 app.post('/api/products', (req, res) => {
     let product = req.body;
-    let sql = "SET @_id = ?; SET @Title = ?; SET @Description = ?; SET @Image = ?; SET @Price = ?; SET @Categories = ?;\
-    CALL InsertOrUpdateProducts(@_id, @Title, @Description, @Image, @Price, @Categories);";
-    mysqlConnection.query(sql,[product._id, product.Title, product.Description, product.Image, product.Price, product.Categories], (err, rows, fields)=>{
+    let sql = "SET @_id = ?; SET @title = ?; SET @description = ?; SET @image = ?; SET @price = ?; SET @categories = ?;\
+    CALL InsertOrUpdateProducts(@_id, @title, @description, @image, @price, @categories);";
+    mysqlConnection.query(sql,[product._id, product.title, product.description, product.image, product.price, product.categories], (err, rows, fields)=>{
         if(!err) {
             rows.forEach(element => {
                 if(element.constructor == Array) {
