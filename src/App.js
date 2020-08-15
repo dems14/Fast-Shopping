@@ -46,28 +46,6 @@ class App extends React.Component {
     this.setState({cartItems});
     localStorage.setItem("cartItems",JSON.stringify(cartItems));
   }
-  sortProducts = (event) => {
-
-    console.log(event.target.value);
-    const sort = event.target.value;
-    this.setState((state) => ({
-      sort: sort,
-      products: this.state.products.slice()
-      .sort((a,b) => 
-          sort === "Lowest Price"
-          ? a.price > b.price
-          ? 1
-          : -1
-          : sort === "Alpha Order" 
-          ? a.price < b.price
-          ? 1
-          :-1
-          : a._id > b._id
-          ? 1
-          :-1
-       ),
-    }))
-  }
 
   render(){
     return (
@@ -79,12 +57,9 @@ class App extends React.Component {
         <main>
           <div className="content">
             <div className="main">
-                <Filter count={this.state.products.length} 
-                sort={this.state.sort}
-                sortProducts={this.sortProducts}
-                >
+                <Filter>
                 </Filter>
-                <Products products={this.state.products} addToCart={this.addToCart}></Products>
+                <Products addToCart={this.addToCart}></Products>
             </div>
             <div className="sidebar">
                 <Cart 
