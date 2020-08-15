@@ -4,6 +4,7 @@ import {Fade, Zoom} from 'react-awesome-reveal';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
 import {fetchProducts} from '../actions/productsActions';
+import {addToCart} from '../actions/cartActions';
 
 Modal.setAppElement('#root')
 
@@ -82,7 +83,6 @@ Modal.setAppElement('#root')
                                         <button className="button primary" onClick={() =>{
                                             this.props.addToCart(product);
                                             this.closeModal();
-
                                         }}>
                                         Add to Cart
                                         </button>
@@ -97,4 +97,6 @@ Modal.setAppElement('#root')
 }
 export default connect ((state) => ({ products: state.products.filteredItems }), {
     fetchProducts,
+    addToCart
+    
 })(Products)
