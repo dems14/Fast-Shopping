@@ -4,7 +4,6 @@ import {sortProducts} from '../actions/productsActions'
 
  class Filter extends Component {
     render() {
-        console.log(this.props);
         return !this.props.filteredProducts? (
             <div>Loading...</div> ) : (
             <div className="filter">

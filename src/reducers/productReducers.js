@@ -16,9 +16,7 @@ export const productsReducer = (state = {}, action) => {
             products.forEach(product =>{
                 let str = product.categories
                 str = str.split(',');
-
-                product.categories = str;
-                console.log(product);  
+                product.categories = str; 
         })
         return { items: action.payload, filteredItems: action.payload }
 
