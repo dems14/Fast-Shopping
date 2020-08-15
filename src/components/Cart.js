@@ -9,6 +9,8 @@ class Cart extends Component {
         super(props);
         this.state = {
             showCheckout : false,
+            showNewCustomer : false,
+            showExistingCustomer: false,
             email:"",
             name:"",
             address:""
@@ -69,15 +71,39 @@ class Cart extends Component {
                             </div>
 
                             <button onClick={()=>{
-                                this.setState({showCheckout: true });
-                            }} className="button primary">Proceed
+                                this.setState({showCheckout: true , showNewCustomer: true, showExistingCustomer: false});
+                            }} className="button primary">New Customer 
+                            </button>
+
+                            <button onClick={()=>{
+                                this.setState({showCheckout: true, showExistingCustomer: true,  showNewCustomer: false});
+                            }} className="button primary">Existing Customer 
                             </button>
                         </div>
                         </div>
-                        {this.state.showCheckout && ( 
+                        {this.state.showCheckout && this.state.showExistingCustomer ? ( 
                         <Fade direction="left" cascade>
                             <div className="cart">
                                 <form onSubmit={this.createOrder}>
+
+                                    <ul className="form-container">
+                                        <li>
+                                            <label>Email</label>
+                                            <input name="email" type="email" required onChange={this.handleChange}/>
+                                        </li>
+
+                                        <li>
+                                            <button className="button primary" type="submit">Checkout</button>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </Fade> 
+                        ) : (this.state.showCheckout && this.state.showNewCustomer) ? (
+                            <Fade direction="left" cascade>
+                            <div className="cart">
+                                <form onSubmit={this.createOrder}>
+
                                     <ul className="form-container">
                                         <li>
                                             <label>Email</label>
@@ -98,8 +124,8 @@ class Cart extends Component {
                                     </ul>
                                 </form>
                             </div>
-                        </Fade> 
-                        )}
+                        </Fade>
+                        ) : <div></div>}
                     </div>
                     
                 )}

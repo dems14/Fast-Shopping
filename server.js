@@ -58,11 +58,120 @@ app.post('/api/products', (req, res) => {
     });
 });
 
-//delete a clients
+//delete a product
 app.delete('/api/products/:id', (req, res) => {
     mysqlConnection.query("DELETE FROM Products WHERE _id = ?",[req.params.id], (err, rows, fields)=>{
         if(!err) {
             res.send('Deleted successfully');
+        }
+        else {
+            console.log(err)
+        }
+    });
+});
+
+
+//////////////////////Clients Operations//////////////////////////
+
+//get all clients
+app.get('/api/clients', (req, res) => {
+    mysqlConnection.query("SELECT * FROM Client", (err, rows, fields)=>{
+        if(!err) {
+            res.send(rows);
+        }
+        else {
+            console.log(err)
+        }
+    });
+});
+
+//get a clients
+app.get('/api/clients/:id', (req, res) => {
+    mysqlConnection.query("SELECT * FROM Client WHERE ClientID = ?",[req.params.id], (err, rows, fields)=>{
+        if(!err) {
+            res.send(rows);
+        }
+        else {
+            console.log(err)
+        }
+    });
+});
+
+//delete a clients
+app.delete('/api/clients/:id', (req, res) => {
+    mysqlConnection.query("DELETE FROM Client WHERE ClientID = ?",[req.params.id], (err, rows, fields)=>{
+        if(!err) {
+            res.send('Deleted successfully');
+        }
+        else {
+            console.log(err)
+        }
+    });
+});
+
+//insert a clients
+app.post('/api/clients', (req, res) => {
+    let client = req.body;
+    let sql = "SET @ClientId = ?; SET @Name = ?; SET @UserName = ?; SET @Address = ?; SET @Email = ?; SET @Phone = ?;\
+    CALL InsertOrUpdateClients(@ClientId, @Name, @UserName, @Address, @Email, @Phone);";
+    mysqlConnection.query(sql,[client.ClientId, client.Name, client.UserName, client.Address, client.Email, client.Phone], (err, rows, fields)=>{
+        if(!err) {
+            rows.forEach(element => {
+                if(element.constructor == Array) {
+                    res.send('inserted Client id : ' + element[0].ClientId);
+                }
+            });
+        }
+        else {
+            console.log(err)
+        }
+    });
+});
+
+
+//update a clients
+app.put('/api/clients', (req, res) => {
+    let client = req.body;
+    let sql = "SET @ClientId = ?; SET @Name = ?; SET @UserName = ?; SET @Address = ?; SET @Email = ?; SET @Phone = ?;\
+    CALL InsertOrUpdateClients(@ClientId, @Name, @UserName, @Address, @Email, @Phone);";
+    mysqlConnection.query(sql,[client.ClientId, client.Name, client.UserName, client.Address, client.Email, client.Phone], (err, rows, fields)=>{
+        if(!err) {
+            rows.forEach(element => {
+                if(element.constructor == Array) {
+                    res.send('Updated successfully');
+                }
+            });
+        }
+        else {
+            console.log(err)
+        }
+    });
+});
+
+//////////////////////Clients Operations//////////////////////////
+//create order
+app.post('/api/orders', (req, res) => {
+    let order = req.body;
+    let sql = "SET @_id = ?; SET @CLientId = ?; SET @total = ?; SET @cartItems = ?; \
+    CALL InsertOrUpdateClients(@_id, @ClientId, @total, @cartItems, curdate(), curdate());";
+    mysqlConnection.query(sql,[order._id, order.ClientId, order.total, order.cartItems], (err, rows, fields)=>{
+        if(!err) {
+            rows.forEach(element => {
+                if(element.constructor == Array) {
+                    res.send('inserted Client id : ' + element[0].ClientId);
+                }
+            });
+        }
+        else {
+            console.log(err)
+        }
+    });
+});
+//get all orders
+app.get('/api/orders', (req, res) => {
+    mysqlConnection.query("SELECT * FROM Orders", (err, rows, fields)=>{
+        if(!err) {
+            res.send(rows);
         }
         else {
             console.log(err)
