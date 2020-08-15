@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import formatCurrency from '../util';
-import Fade from 'react-reveal/Fade';
-import Zoom from 'react-reveal/Zoom';
+import {Fade, Zoom} from 'react-awesome-reveal';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
 import {fetchProducts} from '../actions/productsActions';
@@ -30,14 +29,10 @@ Modal.setAppElement('#root')
     }
     render() {
         const {product} = this.state;
-        /*this.props.products.forEach(product => {
-            product.categories = JSON.parse(product.categories);
-        })*/
         
         return (
             <div>
-                <Fade bottom cascade>
-
+                <Fade direction="top" cascade>
                     {
                         !this.props.products ? <div>Loading</div>:
                         <ul className="products">
@@ -65,7 +60,7 @@ Modal.setAppElement('#root')
                 onRequestClose = {this.closeModal}
                 >
                     <Zoom>
-                        <button className="close-modal" onClick={this.closeModal}>x</button>
+                        <button style={{display: "inline-block"}} className="close-modal" onClick={this.closeModal}>x</button>
                         <div className="product-details">
                             <img src = {product.image} alt={product.title}></img>
                             <div className="product-details-description">
@@ -100,6 +95,6 @@ Modal.setAppElement('#root')
             </div>
         )}
 }
-export default connect ((state) => ({ products: state.products.items }), {
+export default connect ((state) => ({ products: state.products.filteredItems }), {
     fetchProducts,
 })(Products)
