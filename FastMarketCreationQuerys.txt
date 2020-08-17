@@ -1,0 +1,190 @@
+CREATE TABLE `Client` (
+	`ClientId` INT (11) NOT NULL AUTO_INCREMENT,
+    `Name` varchar (45) DEFAULT NULL,
+    `UserName` varchar (45) DEFAULT NULL,
+    `Address` varchar(60) DEFAULT NULL,
+    `Email` varchar(60) default NULL,
+    `Phone` int(11),
+    primary key (`ClientId`)
+)engine=InnoDB auto_increment=0 default charset=utf8mb4 collate=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `Products` (
+	`_id` INT (11) NOT NULL AUTO_INCREMENT,
+    `title` varchar (45) DEFAULT NULL,
+    `description` varchar (45) DEFAULT NULL,
+    `image` varchar(200) DEFAULT NULL,
+    `price` int(11) default NULL,
+    `categories` varchar(100) DEFAULT NULL,
+    primary key (`_id`)
+)engine=InnoDB auto_increment=0 default charset=utf8mb4 collate=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `orders` (
+  `_id` int NOT NULL AUTO_INCREMENT,
+  `ClientId` int DEFAULT NULL,
+  `total` int DEFAULT NULL,
+  `cartItems` varchar(1000) DEFAULT NULL,
+  `inserted` datetime DEFAULT CURRENT_TIMESTAMP,
+  `edited` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`_id`),
+  KEY `fk_ClienId_idx` (`ClientId`),
+  CONSTRAINT `fk_ClientId` FOREIGN KEY (`ClientId`) REFERENCES `client` (`ClientId`)
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `fastmarketdb`.`products`
+(`_id`,
+`title`,
+`description`,
+`image`,
+`price`,
+`categories`)
+VALUES
+(<{_id: }>,
+<{title: }>,
+<{description: }>,
+<{image: }>,
+<{price: }>,
+<{categories: }>);
+
+////////////////////////// CLIENTS
+ 
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertOrUpdateClients`(
+	in _ClientId INT,
+    in _Name varchar(45),
+    in _UserName varchar(45),
+    in _Address varchar(60),
+    in _Email varchar(60),
+    in _Phone INT
+)
+begin
+	if _ClientId = 0 then
+		insert into Client (Name, UserName, Address, Email, Phone)
+        values (_Name, _UserName, _Address, _Email, _Phone);
+        
+        set _ClientId = last_insert_id();
+	else
+		update Client
+        set 
+        Name = _Name,
+        UserName = _UserName,
+        Address = Address,
+        Email = _Email,
+        Phone = _Phone
+        where ClientId = _ClientId;
+	end if;
+	
+    select	_ClientId As 'ClientId';
+end
+
+
+//////////////////////////////////// PRODUCTS
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertOrUpdateProducts`(
+	in __id INT,
+    in _Title varchar(45),
+    in _Description varchar(45),
+    in _Image varchar(200),
+    in _Price INT,
+    in _Categories varchar(100)
+)
+begin
+	if __id = 0 then
+		insert into Products (Title, Description, Image, Price, Categories)
+        values (_Title, _Description, _Image, _Price, _Categories);
+        
+        set __id = last_insert_id();
+	else
+		update Products
+        set 
+        Title = _Title,
+        Description = _Description,
+        Image = _Image,
+        Price = _Price,
+        Categories = _Categories
+        where _id = __id;
+	end if;
+	
+    select	__id As '_id';
+end
+
+///////////////////////////////////////////// ORDERS
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `InsertOrUpdateOrders`(
+	in __id INT,
+    in _ClientId int,
+    in _total int,
+    in _cartItems varchar(1000),
+    in _inserted datetime,
+    in _edited datetime
+)
+begin
+	if __id = 0 then
+		insert into Orders (ClientId, total, cartItems, inserted, edited )
+        values (_CLientId, _total, _cartItems, _inserted, _edited );
+        
+        set __id = last_insert_id();
+	else
+		update Orders
+        set 
+        ClientId = _ClientId,
+        total = _total,
+        cartItems = _cartItems,
+        inserted = _inserted,
+        edited = _edited
+        
+        where _id = __id;
+	end if;
+	
+    select	__id As '_id';
+end
+
+
+/////////on post man use url with post request http://localhost:5000/api/products
+{
+        "_id":0,
+        "title":"Test Product 1",
+        "description":"a producto to be displayed ",
+        "image":"/images/imageAsset1.jpeg",
+        "price":70,
+        "categories": "cat1, cat2', cat3"
+}
+{
+        "_id":0,
+        "title":"Test Product 2",
+        "description":"a producto to be displayed ",
+        "image":"/images/imageAsset2.jpeg",
+        "price":50,
+        "categories": "cat1, cat2', cat3"
+}
+{
+        "_id":0,
+        "title":"Test Product 3",
+        "description":"a producto to be displayed ",
+        "image":"/images/imageAsset3.jpeg",
+        "price":80,
+        "categories": "cat1, cat2', cat3"
+}
+{
+        "_id":0,
+        "title":"Test Product 4",
+        "description":"a producto to be displayed ",
+        "image":"/images/imageAsset4.jpeg",
+        "price":60,
+        "categories": "cat1, cat2', cat3"
+}
+{
+        "_id":0,
+        "title":"Test Product 5",
+        "description":"a producto to be displayed ",
+        "image":"/images/imageAsset5.jpeg",
+        "price":90,
+        "categories": "cat1, cat2', cat3"
+}
+{
+        "_id":0,
+        "title":"Test Product 6",
+        "description":"a producto to be displayed ",
+        "image":"/images/imageAsset6.jpeg",
+        "price":50,
+        "categories": "cat1, cat2', cat3"
+}
