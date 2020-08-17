@@ -85,9 +85,21 @@ app.get('/api/clients', (req, res) => {
     });
 });
 
-//get a clients
-app.get('/api/clients/:id', (req, res) => {
+//get a client by id 
+/*app.get('/api/clients/:id', (req, res) => {
     mysqlConnection.query("SELECT * FROM Client WHERE ClientID = ?",[req.params.id], (err, rows, fields)=>{
+        if(!err) {
+            res.send(rows);
+        }
+        else {
+            console.log(err)
+        }
+    });
+});*/
+
+//get a client by email 
+app.get('/api/clients/:email', (req, res) => {
+    mysqlConnection.query("SELECT * FROM Client WHERE Email = ?",[req.params.email], (err, rows, fields)=>{
         if(!err) {
             res.send(rows);
         }
@@ -118,7 +130,7 @@ app.post('/api/clients', (req, res) => {
         if(!err) {
             rows.forEach(element => {
                 if(element.constructor == Array) {
-                    res.send('inserted Client id : ' + element[0].ClientId);
+                    res.send('' + element[0].ClientId);
                 }
             });
         }
@@ -150,15 +162,15 @@ app.put('/api/clients', (req, res) => {
 
 //////////////////////Clients Operations//////////////////////////
 //create order
-app.post('/api/orders', (req, res) => {
+app.post('/api/clients/orders', (req, res) => {
     let order = req.body;
-    let sql = "SET @_id = ?; SET @CLientId = ?; SET @total = ?; SET @cartItems = ?; \
-    CALL InsertOrUpdateClients(@_id, @ClientId, @total, @cartItems, curdate(), curdate());";
+    let sql = "SET @_id = ?; SET @ClientId = ?; SET @total = ?; SET @cartItems = ?; \
+    CALL InsertOrUpdateOrders(@_id, @ClientId, @total, @cartItems, curdate(), curdate());";
     mysqlConnection.query(sql,[order._id, order.ClientId, order.total, order.cartItems], (err, rows, fields)=>{
         if(!err) {
             rows.forEach(element => {
                 if(element.constructor == Array) {
-                    res.send('inserted Client id : ' + element[0].ClientId);
+                    res.send(element[0]);
                 }
             });
         }
@@ -167,6 +179,7 @@ app.post('/api/orders', (req, res) => {
         }
     });
 });
+
 //get all orders
 app.get('/api/orders', (req, res) => {
     mysqlConnection.query("SELECT * FROM Orders", (err, rows, fields)=>{
